@@ -21,44 +21,31 @@
  */
 /**
  * Update an Item
- * 
+ *
  * @package bendera
  * @subpackage processors
  */
-/* get board */
-/* trigger_error(json_encode($scriptProperties),E_USER_ERROR); */
-if (empty($scriptProperties['id'])) return $modx->error->failure($modx->lexicon('bendera.item_err_ns'));
-$item = $modx->getObject('BenderaItem',$scriptProperties['id']);
-if (!$item) return $modx->error->failure($modx->lexicon('bendera.item_err_nf'));
-switch ($scriptProperties['type']) {
-    case 'HTML':
-    case 'html':
-        $scriptProperties['content'] = $scriptProperties['html'];
-    break;
-        
-    case 'Flash':
-    case 'flash':
-        $scriptProperties['content'] = $scriptProperties['flash_swf'];
-    break;
-        
-    case 'image':
-    case 'Image':
-    case 'Afbeelding':
-        $scriptProperties['content'] = $scriptProperties['image'];
-    break;
-        
+if (empty($scriptProperties['id'])) {
+    return $modx->error->failure($modx->lexicon('bendera.item_err_ns'));
 }
+
+$item = $modx->getObject('BenderaItem', $scriptProperties['id']);
+if (!$item) {
+    return $modx->error->failure($modx->lexicon('bendera.item_err_nf'));
+}
+
+$scriptProperties['active'] = ($scriptProperties['active']) ? $scriptProperties['active'] : 0;
+
 if (is_array($scriptProperties['categories'])) {
     $scriptProperties['categories'] = implode(',', $scriptProperties['categories']);
 }
-//$scriptProperties['startdate'] = strtotime($scriptProperties['startdate']);
-//$scriptProperties['enddate'] = strtotime($scriptProperties['enddate']);
-$item->fromArray($scriptProperties);
 
+$item->fromArray($scriptProperties);
 if ($item->save() == false) {
     return $modx->error->failure($modx->lexicon('bendera.item_err_save'));
 }
 
 /* output */
-$itemArray = $item->toArray('',true);
-return $modx->error->success('',$itemArray);
+$itemArray = $item->toArray('', true);
+
+return $modx->error->success('', $itemArray);

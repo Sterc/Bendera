@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package bendera
+ */
 $xpdo_meta_map['BenderaItem']= array (
   'package' => 'bendera',
   'version' => NULL,
@@ -8,6 +11,8 @@ $xpdo_meta_map['BenderaItem']= array (
   array (
     'title' => '',
     'description' => '',
+    'image' => '',
+    'html' => '',
     'content' => '',
     'size' => '',
     'startdate' => '',
@@ -17,7 +22,9 @@ $xpdo_meta_map['BenderaItem']= array (
     'categories' => '',
     'createdon' => NULL,
     'context' => '',
-    'url' => '',
+    'link_internal' => '',
+    'link_external' => '',
+    'active' => 0,
   ),
   'fieldMeta' => 
   array (
@@ -33,6 +40,22 @@ $xpdo_meta_map['BenderaItem']= array (
     array (
       'dbtype' => 'text',
       'phptype' => 'text',
+      'null' => false,
+      'default' => '',
+    ),
+    'image' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '255',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
+    'html' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '255',
+      'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
@@ -105,13 +128,29 @@ $xpdo_meta_map['BenderaItem']= array (
       'null' => false,
       'default' => '',
     ),
-    'url' => 
+    'link_internal' => 
     array (
       'dbtype' => 'varchar',
       'precision' => '255',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
+    ),
+    'link_external' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '255',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
+    'active' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'null' => false,
+      'default' => 0,
     ),
   ),
 );
